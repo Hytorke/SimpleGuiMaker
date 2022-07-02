@@ -1,0 +1,18 @@
+name: SimpleGuiMaker
+version: '1.0'
+main: fr.hytorke.simpleguimaker.SimpleGuiMaker
+authors: [ Hytorke ]
+description: Plugin make gui creation easy
+website: https://www.youtube.com/channel/UCRUdPL25-dVtcUizoTSVm_w
+
+commands:
+  SetGuiOpenner:
+    description: Set a item or a command for open a gui
+
+  CreateGui:
+    description: Create a empty chest you can name
+    permission: CreateGui.use
+
+  OpenGui:
+    description: Open a existent GUI
+    permission: OpenGui.use
