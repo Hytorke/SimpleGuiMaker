@@ -13,7 +13,7 @@ public class CreateGui implements CommandExecutor {
         Player player;
         int inventorySize = -1;
         StringBuilder stringBuilder;
-        String name;
+        String inventoryName;
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("Please be player to send this command");
@@ -36,13 +36,17 @@ public class CreateGui implements CommandExecutor {
             stringBuilder.append(' ');
             stringBuilder.append(args[i]);
         }
-        name = ChatColor.translateAlternateColorCodes('&', stringBuilder.toString());
+        inventoryName = ChatColor.translateAlternateColorCodes('&', stringBuilder.toString());
+
         if (SimpleGuiMaker.guiName.contains(name)) {
             player.sendMessage("§7The Gui already exist or is named same");
             return false;
         }
 
-        // Here, InvName & Lenght are defined
+        // Here, InvName & Length are defined
+
+        Map<Object, Object> Guisave = new HashMap<>();
+
         return true;
     }
 }
