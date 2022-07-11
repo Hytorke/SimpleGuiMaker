@@ -1,6 +1,5 @@
 package fr.hytorke.simpleguimaker.commands;
 
-import fr.hytorke.simpleguimaker.SimpleGuiMaker;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,13 +20,18 @@ public class CreateGui implements CommandExecutor {
         }
         player = (Player) sender;
 
+        if(args.length < 1) {
+            player.sendMessage("§aPlease type de command well (/simpleguihelp)");
+            return true;
+        }
+
         //Catch the Gui size and name
         try {
             inventorySize = Integer.parseInt(args[0]);
         } catch (NumberFormatException ignored) {};
 
         if (inventorySize < 1 || inventorySize > 6) {
-            player.sendMessage("§7Please put a number between 1 and 6");
+            player.sendMessage("§aPlease put a number between §e§l1 §aand §e§l6 §a instead of \"§e§l" + args[0] + "§a\"");
             return false;
         }
 
@@ -38,17 +42,17 @@ public class CreateGui implements CommandExecutor {
         }
         inventoryName = ChatColor.translateAlternateColorCodes('&', stringBuilder.toString());
 
-        if (SimpleGuiMaker.guiName.contains(name)) {
-            player.sendMessage("§7The Gui already exist or is named same");
+        if (basicGui.containsKey(inventoryName)) {
+            player.sendMessage("§aThe Gui \"§e§l" + inventoryName + "§a\" already exist or is named same");
             return false;
         }
 
-        // Here, InvName & Length are defined
-
-        Map<Object, Object> Guisave = new HashMap<>();
-
+        basicGui.put(inventoryName, inventorySize);
+        player.sendMessage("§aThe GUI \"§e§l" + inventoryName + "§a\" has successfully been created with §e" + basicGui.get(inventoryName) + " §ainventory line") ;
         return true;
     }
+    public static Map<String, Integer> basicGui = new HashMap<>();
+
 }
 
 //[#####################]
